@@ -1,6 +1,7 @@
 # getx_flutter
 
 A new Flutter project.
+<img src="https://github.com/Mirzaazmath/getx_sample/blob/main/assets/result.gif" height="400">
 
 ## Getting Started
 
