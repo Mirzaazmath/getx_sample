@@ -2,6 +2,10 @@
 
 A new Flutter project.
 
+
+
+<img src="https://github.com/Mirzaazmath/getx_sample/blob/getxController/assets/result.gif" height="400">
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
