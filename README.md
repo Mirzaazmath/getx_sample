@@ -2,7 +2,13 @@
 
 A new Flutter project.
 
+
+
 ## Getting Started
+
+<img src="https://github.com/Mirzaazmath/getx_sample/blob/Getx_Reactive_StateM/assets/result.gif" height="400">
+
+This is the Reactive State ManageMent in Getx Flutter 
 
 This project is a starting point for a Flutter application.
 
