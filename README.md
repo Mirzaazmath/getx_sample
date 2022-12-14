@@ -4,6 +4,10 @@ A new Flutter project.
 
 ## Getting Started
 
+<img src="https://github.com/Mirzaazmath/getx_sample/blob/Getx_simple_stateM/assets/result.gif" heigth="400">
+
+This is the Simple And Easy StateManagement in Getx
+
 This project is a starting point for a Flutter application.
 
 A few resources to get you started if this is your first Flutter project:
