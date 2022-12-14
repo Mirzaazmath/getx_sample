@@ -4,7 +4,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 import 'package:getx_flutter/controllerclass.dart';
 
-import 'modelclass.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -41,25 +41,27 @@ class Log2Page extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              // here we are using the GetX<TYpe of Controller>
-              // Controller is a class name which we want to acess
-              //and init initailize the contoller
-              //builder(mycontroller) createa the instance of the controller class
-              // so we can acess the all properties of the that class by the instancd
-              // we do not need the obx() here
-              GetX<Controller>(
+              // here we are calling the controller class
+              // here we are using the GetBuilder because we are performing the simple state
+              // management
+              GetBuilder<Controller>(
+                //here we are initializing the controllerclass
                 init: Controller(),
-                builder: (mycontroller){
-                  return  Column(
-                                children: [
-                                  Text('Obx: ${mycontroller.log2}',style:const  TextStyle(fontSize: 50),),
-                                  Text('Obx: ${mycontroller.title}',style:const  TextStyle(fontSize: 50),)
+                  // here we are creating the instance of the contollerclass
 
-                                ],
-                              );
-                },
+                  builder: (value){
+                return Column(
+                  children: [
+                    // here we are using the instance to get the data from that class
+                    Text(value.count.toString(),style:const  TextStyle(fontSize: 50),),
+                   const  SizedBox(height: 50,),
+                    Text(value.title.toString(),style: const TextStyle(fontSize: 50),)
+                  ],
+                );
+                  })
 
-              )
+
+
 
             ],
           ),
@@ -67,10 +69,11 @@ class Log2Page extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          // here we are search the the controller to create instance and use it
-          // this will search the controller
-          // you must initalized the controller in somewhere otherwise it wont find it
+          // without creating the instance of the controller class
+          // we are acess it with get.fint
+          // it will find the class and its properties
           Get.find<Controller>().change();
+
         }
 
       ),
