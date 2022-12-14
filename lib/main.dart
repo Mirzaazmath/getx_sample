@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:get/state_manager.dart';
 
+import 'modelclass.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -25,16 +27,10 @@ class MyApp extends StatelessWidget {
   }
 }
 class MyHomePage extends StatelessWidget {
-// As you see we must have to make the variable obverver by using two ways first one is
-  var number=RxInt(0) ;
-  // second one is this
-  //var number=0.obs
-  // both work fine
+  // here we are make the entire class as observer
+  var student=Student(name: 'mirza', age: 24).obs;
 
-  // this is the increament function
-  void increament(){
-    number++;
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,14 +45,20 @@ class MyHomePage extends StatelessWidget {
         // any change made the observer value it updqte the ui automatically
         child: Obx((){
 
-          return Text(number.string,style:const  TextStyle(fontSize: 50));
+          return Text(student.value.name,style:const  TextStyle(fontSize: 50));
         })
 
 
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
-        // here we are calling the increamet function to increase value
-        increament();
+        // if you want to change the value you need to use the update function with class that
+        // you want to update
+       student.update((val) {
+         val?.name=val.name.toUpperCase();
+       });
+
+
+
       },child: const Icon(Icons.add),),
     );
 
