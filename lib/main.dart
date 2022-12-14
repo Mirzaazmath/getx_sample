@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
   }
 }
 class Log2Page extends StatelessWidget {
-  Controller c = Get.put(Controller());
+
   @override
   Widget build(BuildContext context) {
 
@@ -41,24 +41,37 @@ class Log2Page extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Obx(
-                      () => Column(
-                        children: [
-                          Text('Obx: ${c.log2}',style:const  TextStyle(fontSize: 50),),
-                          Text('Obx: ${c.title}',style:const  TextStyle(fontSize: 50),)
+              // here we are using the GetX<TYpe of Controller>
+              // Controller is a class name which we want to acess
+              //and init initailize the contoller
+              //builder(mycontroller) createa the instance of the controller class
+              // so we can acess the all properties of the that class by the instancd
+              // we do not need the obx() here
+              GetX<Controller>(
+                init: Controller(),
+                builder: (mycontroller){
+                  return  Column(
+                                children: [
+                                  Text('Obx: ${mycontroller.log2}',style:const  TextStyle(fontSize: 50),),
+                                  Text('Obx: ${mycontroller.title}',style:const  TextStyle(fontSize: 50),)
 
-                        ],
-                      )
-              ),
+                                ],
+                              );
+                },
 
-
+              )
 
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: c.change,
+        onPressed: (){
+          // here we are search the the controller to create instance and use it
+          // this will search the controller
+          // you must initalized the controller in somewhere otherwise it wont find it
+          Get.find<Controller>().change();
+        }
 
       ),
     );
