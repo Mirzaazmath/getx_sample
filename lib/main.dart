@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
+import 'package:getx_flutter/controllerclass.dart';
 
 import 'modelclass.dart';
 
@@ -22,46 +24,44 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.green,
       ),
-      home: MyHomePage(),
+      home: Log2Page(),
     );
   }
 }
-class MyHomePage extends StatelessWidget {
-  // here we are make the entire class as observer
-  var student=Student(name: 'mirza', age: 24).obs;
-
-
-
+class Log2Page extends StatelessWidget {
+  Controller c = Get.put(Controller());
   @override
   Widget build(BuildContext context) {
 
+    print("objext");
+
     return Scaffold(
-      appBar: AppBar(
-        title:const  Text("GetX Sample"),
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Obx(
+                      () => Column(
+                        children: [
+                          Text('Obx: ${c.log2}',style:const  TextStyle(fontSize: 50),),
+                          Text('Obx: ${c.title}',style:const  TextStyle(fontSize: 50),)
+
+                        ],
+                      )
+              ),
+
+
+
+            ],
+          ),
+        ),
       ),
-      body: Center(
-
-        // note if you want to  update the ui you must have to wrap it with  Obx((){}) by this when ever there is
-        // any change made the observer value it updqte the ui automatically
-        child: Obx((){
-
-          return Text(student.value.name,style:const  TextStyle(fontSize: 50));
-        })
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: c.change,
 
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {
-        // if you want to change the value you need to use the update function with class that
-        // you want to update
-       student.update((val) {
-         val?.name=val.name.toUpperCase();
-       });
-
-
-
-      },child: const Icon(Icons.add),),
     );
-
   }
 }
 
